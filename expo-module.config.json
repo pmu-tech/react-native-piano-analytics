@@ -1,0 +1,10 @@
+{
+  "platforms": ["ios", "android"],
+  "ios": {
+    "appDelegateSubscribers": [],
+    "modules": ["RNPianoAnalyticsModule"]
+  },
+  "android": {
+    "modules": ["piano.analytics.RNPianoAnalyticsModule"]
+  }
+}

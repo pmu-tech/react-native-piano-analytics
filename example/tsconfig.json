@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@pmu-tech/react-native-piano-analytics": ["../dist/index"],
+      "@pmu-tech/react-native-piano-analytics/*": ["../dist/*"]
+    }
+  }
+}

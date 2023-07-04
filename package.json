@@ -1,0 +1,42 @@
+{
+  "name": "@pmu-tech/react-native-piano-analytics",
+  "version": "0.1.0",
+  "description": "React Native Piano Analytics",
+  "author": "PMU",
+  "license": "MIT",
+  "homepage": "https://github.com/pmu-tech/react-native-piano-analytics#readme",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module",
+    "open:ios": "open -a \"Xcode\" example/ios",
+    "open:android": "open -a \"Android Studio\" example/android"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "react-native-piano-analytics"
+  ],
+  "repository": "https://github.com/pmu-tech/react-native-piano-analytics",
+  "bugs": {
+    "url": "https://github.com/pmu-tech/react-native-piano-analytics/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/react": "^18.0.25",
+    "@types/react-native": "^0.70.6",
+    "expo-module-scripts": "^3.0.4",
+    "expo-modules-core": "^1.1.0"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
+  }
+}
