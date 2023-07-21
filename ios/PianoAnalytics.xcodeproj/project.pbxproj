@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libPianoAnalytics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPianoAnalytics.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		4614A4E02A6AC28C00F0F4C0 /* PianoAnalytics-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PianoAnalytics-Bridging-Header.h"; sourceTree = "<group>"; };
+		4614A4E02A6AC28C00F0F4C0 /* PianoAnalyticsBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PianoAnalyticsBridge.h"; sourceTree = "<group>"; };
 		4614A4E12A6AC28D00F0F4C0 /* PianoAnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoAnalyticsManager.swift; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* PianoAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PianoAnalytics.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* PianoAnalytics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PianoAnalytics.mm; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 				B3E7B5881CC2AC0600A0062D /* PianoAnalytics.h */,
 				B3E7B5891CC2AC0600A0062D /* PianoAnalytics.mm */,
 				134814211AA4EA7D00B7C361 /* Products */,
-				4614A4E02A6AC28C00F0F4C0 /* PianoAnalytics-Bridging-Header.h */,
+				4614A4E02A6AC28C00F0F4C0 /* PianoAnalyticsBridge.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -234,7 +234,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = PianoAnalytics;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "PianoAnalytics-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "PianoAnalyticsBridge.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -254,7 +254,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = PianoAnalytics;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "PianoAnalytics-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "PianoAnalyticsBridge.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
