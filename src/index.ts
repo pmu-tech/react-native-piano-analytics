@@ -1,6 +1,9 @@
 import { NativeModules, Platform } from 'react-native';
+
 import type { EventName } from './types';
 import type { PrivacyMode } from './types';
+
+export * from './types';
 
 const LINKING_ERROR =
   `The package '@pmu-tech/react-native-piano-analytics' doesn't seem to be linked. Make sure: \n\n` +
