@@ -1,6 +1,6 @@
 import { NativeModules, Platform } from 'react-native';
-import type {EventName} from './types'
-import type {PrivacyMode} from './types'
+import type { EventName } from './types';
+import type { PrivacyMode } from './types';
 
 const LINKING_ERROR =
   `The package '@pmu-tech/react-native-piano-analytics' doesn't seem to be linked. Make sure: \n\n` +
@@ -15,7 +15,6 @@ const PianoAnalyticsModule = isTurboModuleEnabled
   ? require('./RNPianoAnalytics').default
   : NativeModules.RNPianoAnalytics;
 
-console.log({NativeModules})
 const PianoAnalytics = PianoAnalyticsModule
   ? PianoAnalyticsModule
   : new Proxy(
@@ -27,11 +26,18 @@ const PianoAnalytics = PianoAnalyticsModule
       }
     );
 
-export function sendEvent(eventName: EventName, params: Record<string, string>) {
+export function sendEvent(
+  eventName: EventName,
+  params: Record<string, string>
+) {
   return PianoAnalytics.sendEvent(eventName, params);
 }
 
-export function setUser(userId: string, category: string, enableStorage: boolean) {
+export function setUser(
+  userId: string,
+  category: string,
+  enableStorage: boolean
+) {
   return PianoAnalytics.setUser(userId, category, enableStorage);
 }
 
