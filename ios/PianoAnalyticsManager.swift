@@ -16,10 +16,10 @@ final class PianoAnalyticsManager: RCTViewManager {
   // pragma MARK: React Functions
 
   @objc
-  final func setConfiguration(_ collectionName: String, siteId: Int) -> Void {
+  final func setConfiguration(_ collectionName: String, siteId: NSNumber) {
     pa.setConfiguration(ConfigurationBuilder()
       .withCollectDomain(collectionName)
-      .withSite(siteId)
+      .withSite(siteId.intValue)
       .build()
     )
   }

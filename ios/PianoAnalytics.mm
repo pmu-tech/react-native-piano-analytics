@@ -10,7 +10,7 @@
 // See // https://reactnative.dev/docs/native-modules-ios
 
 // INITIALIZE CONFIG
-RCT_EXTERN_METHOD(setConfiguration: (NSString)collectionName siteId:(NSNumber)siteId);
+RCT_EXTERN_METHOD(setConfiguration: (NSString)collectionName siteId:(nonnull NSNumber)siteId);
 
 // LOGGING EVENTS
 RCT_EXTERN_METHOD(sendEvent: (NSString)eventName body:(NSDictionary)body);
