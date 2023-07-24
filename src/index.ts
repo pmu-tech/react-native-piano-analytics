@@ -1,27 +1,61 @@
-import RNPianoAnalyticsModule from './RNPianoAnalyticsModule';
+import { NativeModules, Platform } from 'react-native';
 
-export type PrivacyMode = 'optin' | 'exempt' | 'no-storage' | 'no-consent' | 'optout';
+import type { EventName } from './types';
+import type { PrivacyMode } from './types';
 
-export function sendEvent(eventName: string, params: Record<string, string>) {
-  RNPianoAnalyticsModule.sendEvent(eventName, params);
+export * from './types';
+
+const LINKING_ERROR =
+  `The package '@pmu-tech/react-native-piano-analytics' doesn't seem to be linked. Make sure: \n\n` +
+  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
+  '- You rebuilt the app after installing the package\n' +
+  '- You are not using Expo Go\n';
+
+// @ts-expect-error
+const isTurboModuleEnabled = global.__turboModuleProxy != null;
+
+const PianoAnalyticsModule = isTurboModuleEnabled
+  ? require('./RNPianoAnalytics').default
+  : NativeModules.RNPianoAnalytics;
+
+const PianoAnalytics = PianoAnalyticsModule
+  ? PianoAnalyticsModule
+  : new Proxy(
+      {},
+      {
+        get() {
+          throw new Error(LINKING_ERROR);
+        },
+      }
+    );
+
+export function sendEvent(
+  eventName: EventName,
+  params: Record<string, string>
+) {
+  return PianoAnalytics.sendEvent(eventName, params);
 }
 
-export function setUser(userId: string, category?: string, enableStorage?: boolean) {
-  RNPianoAnalyticsModule.setUser(userId, category, enableStorage);
+export function setUser(
+  userId: string,
+  category: string,
+  enableStorage: boolean
+) {
+  return PianoAnalytics.setUser(userId, category, enableStorage);
 }
 
 export function deleteUser() {
-  RNPianoAnalyticsModule.deleteUser();
+  return PianoAnalytics.deleteUser();
 }
 
 export function privacySetMode(mode: PrivacyMode) {
-  RNPianoAnalyticsModule.privacySetMode(mode);
+  PianoAnalytics.privacySetMode(mode);
 }
 
-export function privacyGetMode(): PrivacyMode {
-  return RNPianoAnalyticsModule.privacyGetMode();
+export function privacyGetMode(): Promise<PrivacyMode> {
+  return PianoAnalytics.privacyGetMode();
 }
 
 export function setConfiguration(collectionName: string, siteId: number) {
-  RNPianoAnalyticsModule.setConfiguration(collectionName, siteId);
+  return PianoAnalytics.setConfiguration(collectionName, siteId);
 }

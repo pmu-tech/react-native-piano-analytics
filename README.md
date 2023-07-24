@@ -54,7 +54,7 @@ function privacyGetMode(): PrivacyMode
 
 ```javascript
 // SET USER:
-function setUser(userId: string, category?: string, enableStorage?: boolean): void
+function setUser(userId: string, category: string, enableStorage: boolean): void
 
 // REMOVE USER:
 function deleteUser(): void
@@ -63,7 +63,12 @@ function deleteUser(): void
 ## Send events
 
 ```javascript
-function sendEvent(eventName: string, params: Record<string, string>): void
+export type ClickEvents = "click.action" | "click.navigation" | "click.download" | "click.exit";
+
+export type PageEvents = "page.display";
+
+export type EventName = ClickEvents | PageEvents;
+function sendEvent(eventName: EventName, params: Record<string, string>): void
 ```
 
 # Contributing
