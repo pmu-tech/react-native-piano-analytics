@@ -20,7 +20,7 @@ RCT_EXTERN_METHOD(privacySetMode: (NSString)mode);
 RCT_EXTERN_METHOD(privacyGetMode: (RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject);
 
 // USER
-RCT_EXTERN_METHOD(setUser: (NSString)userId category:(NSDictionary)category enableStorage:(BOOL)enableStorage);
+RCT_EXTERN_METHOD(setUser: (NSString)userId category:(NSString)category enableStorage:(BOOL)enableStorage);
 RCT_EXTERN_METHOD(deleteUser);
 
 // Don't compile this code when we build for the old architecture.
