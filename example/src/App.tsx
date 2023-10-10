@@ -16,6 +16,11 @@ export default function App() {
     PianoAnalytics.setUser('12345', 'premium', true);
   }, []);
 
+  const setPrivacyMode = (mode: PianoAnalytics.PrivacyMode) => {
+    PianoAnalytics.privacySetMode(mode);
+    PianoAnalytics.privacyGetMode().then(setResult);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.container}>
@@ -28,7 +33,10 @@ export default function App() {
           placeholder="CD1 Param"
         />
         <Pressable
-          style={styles.button}
+          style={({ pressed }) => [
+            styles.button,
+            pressed && styles.buttonPressed,
+          ]}
           onPress={() => {
             PianoAnalytics.sendEvent('page.display', {
               user_id: '12345',
@@ -42,10 +50,23 @@ export default function App() {
           <Text>Send Event</Text>
         </Pressable>
         <Pressable
-          style={styles.button}
-          onPress={() => PianoAnalytics.privacySetMode('exempt')}
+          style={({ pressed }) => [
+            styles.button,
+            pressed && styles.buttonPressed,
+          ]}
+          onPress={() => setPrivacyMode('optin')}
         >
           <Text>Set Privacy Mode to "optin"</Text>
+        </Pressable>
+
+        <Pressable
+          style={({ pressed }) => [
+            styles.button,
+            pressed && styles.buttonPressed,
+          ]}
+          onPress={() => setPrivacyMode('exempt')}
+        >
+          <Text>Set Privacy Mode to "exempt"</Text>
         </Pressable>
       </View>
     </View>
@@ -81,5 +102,8 @@ const styles = StyleSheet.create({
     width: '80%',
     height: 40,
     margin: 12,
+  },
+  buttonPressed: {
+    backgroundColor: '#eee',
   },
 });
