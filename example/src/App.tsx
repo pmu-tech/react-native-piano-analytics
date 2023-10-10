@@ -1,7 +1,6 @@
-import * as React from 'react';
-
-import { StyleSheet, View, Text, Pressable, TextInput } from 'react-native';
 import * as PianoAnalytics from '@pmu-tech/react-native-piano-analytics';
+import * as React from 'react';
+import { StyleSheet, View, Text, Pressable, TextInput } from 'react-native';
 
 const collectionName = '';
 const siteId = 12345;

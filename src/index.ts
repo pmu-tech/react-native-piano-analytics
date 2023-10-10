@@ -1,7 +1,6 @@
 import { NativeModules, Platform } from 'react-native';
 
-import type { EventName } from './types';
-import type { PrivacyMode } from './types';
+import type { EventName, PrivacyMode } from './types';
 
 export * from './types';
 
