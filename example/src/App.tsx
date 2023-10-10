@@ -10,6 +10,7 @@ PianoAnalytics.setConfiguration(collectionName, siteId);
 export default function App() {
   const [event, updateEvent] = React.useState<string>('');
   const [result, setResult] = React.useState<any>('');
+  const [visitorId, setVisitorId] = React.useState<any>('');
 
   React.useEffect(() => {
     PianoAnalytics.privacyGetMode().then(setResult);
@@ -67,6 +68,20 @@ export default function App() {
           onPress={() => setPrivacyMode('exempt')}
         >
           <Text>Set Privacy Mode to "exempt"</Text>
+        </Pressable>
+
+        <Pressable
+          style={({ pressed }) => [
+            styles.button,
+            pressed && styles.buttonPressed,
+          ]}
+          onPress={() => {
+            // In this dev mode, getVisitorId will return an error if no visitorId exists
+            PianoAnalytics.setVisitorId('342342rer');
+            PianoAnalytics.getVisitorId().then(setVisitorId);
+          }}
+        >
+          <Text>Get Visitor Id: {visitorId}</Text>
         </Pressable>
       </View>
     </View>

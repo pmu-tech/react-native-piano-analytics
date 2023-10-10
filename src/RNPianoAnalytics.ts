@@ -21,6 +21,10 @@ export interface Spec extends TurboModule {
 
   privacyGetMode(): Promise<PrivacyMode>;
 
+  setVisitorId(visitorId: string): Promise<void>;
+
+  getVisitorId(): Promise<string>;
+
   setConfiguration(collectionName: string, siteId: number): Promise<void>;
 }
 

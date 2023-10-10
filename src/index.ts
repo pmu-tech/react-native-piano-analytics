@@ -55,6 +55,14 @@ export function privacyGetMode(): Promise<PrivacyMode> {
   return PianoAnalytics.privacyGetMode();
 }
 
+export function setVisitorId(visitorId: string) {
+  PianoAnalytics.setVisitorId(visitorId);
+}
+
+export function getVisitorId(): Promise<string> {
+  return PianoAnalytics.getVisitorId();
+}
+
 export function setConfiguration(collectionName: string, siteId: number) {
   return PianoAnalytics.setConfiguration(collectionName, siteId);
 }
