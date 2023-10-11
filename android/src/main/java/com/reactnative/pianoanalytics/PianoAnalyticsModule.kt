@@ -65,9 +65,13 @@ class RNPianoAnalyticsModule internal constructor(context: ReactApplicationConte
 
    @ReactMethod
    override fun getVisitorId(promise: Promise) {
-    piano.getVisitorId { visitorId: String ->
-      promise.resolve(visitorId)
-    }
+     piano.getVisitorId { visitorId ->
+        if (visitorId != null) {
+          promise.resolve(visitorId)
+        } else {
+          promise.reject("Fail to retrieve visitor id");
+        }
+       }
    }
 
   companion object {

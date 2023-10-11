@@ -75,10 +75,23 @@ export default function App() {
             styles.button,
             pressed && styles.buttonPressed,
           ]}
-          onPress={() => {
-            // In this dev mode, getVisitorId will return an error if no visitorId exists
-            PianoAnalytics.setVisitorId('342342rer');
-            PianoAnalytics.getVisitorId().then(setVisitorId);
+          onPress={() => PianoAnalytics.setVisitorId('random-id-12355654')}
+        >
+          <Text>Set Visitor Id to "random-id-12355654"</Text>
+        </Pressable>
+
+        <Pressable
+          style={({ pressed }) => [
+            styles.button,
+            pressed && styles.buttonPressed,
+          ]}
+          onPress={async () => {
+            PianoAnalytics.getVisitorId()
+              .then(setVisitorId)
+              .catch((error) => {
+                console.error(error);
+                setVisitorId(error?.message);
+              });
           }}
         >
           <Text>Get Visitor Id: {visitorId}</Text>
