@@ -1,3 +1,8 @@
+## 0.3.0 (2023/10/18)
+
+- add setVisitorId and getVisitorId
+- fix CI
+
 ## 0.2.0 (2023/07/24)
 
 - migration to turbo module
