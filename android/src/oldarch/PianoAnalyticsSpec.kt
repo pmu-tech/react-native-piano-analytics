@@ -17,5 +17,9 @@ abstract class RNPianoAnalyticsSpec internal constructor(context: ReactApplicati
 
   abstract fun privacyGetMode(promise: Promise)
 
+  abstract fun setVisitorId(id: String)
+
+  abstract fun getVisitorId(promise: Promise)
+
   abstract fun setConfiguration(collectDomain: String, siteId: Int)
 }

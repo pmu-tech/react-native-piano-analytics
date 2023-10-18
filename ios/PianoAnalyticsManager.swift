@@ -54,6 +54,21 @@ final class PianoAnalyticsManager: RCTViewManager {
     }
   }
 
+  @objc
+  final func setVisitorId(_ visitorId: String) {
+    pa.setVisitorId(visitorId)
+  }
+
+  @objc
+  final func getVisitorId(
+    _ resolve: @escaping RCTPromiseResolveBlock,
+    reject: @escaping RCTPromiseRejectBlock
+  ) {
+    pa.getVisitorId { visitorId in
+      resolve(visitorId)
+    }
+  }
+
 }
 
 

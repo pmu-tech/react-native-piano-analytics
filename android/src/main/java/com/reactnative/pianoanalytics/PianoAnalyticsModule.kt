@@ -57,6 +57,23 @@ class RNPianoAnalyticsModule internal constructor(context: ReactApplicationConte
      }
    }
 
+   // VISITOR ID
+   @ReactMethod
+    override fun setVisitorId(visitorId: String) {
+      piano.setVisitorId(visitorId)
+    }
+
+   @ReactMethod
+   override fun getVisitorId(promise: Promise) {
+     piano.getVisitorId { visitorId ->
+        if (visitorId != null) {
+          promise.resolve(visitorId)
+        } else {
+          promise.reject("Fail to retrieve visitor id");
+        }
+       }
+   }
+
   companion object {
     const val NAME = "RNPianoAnalytics"
   }

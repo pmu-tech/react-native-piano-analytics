@@ -60,6 +60,16 @@ function setUser(userId: string, category: string, enableStorage: boolean): void
 function deleteUser(): void
 ```
 
+## Set Privacy id
+
+```javascript
+// SET PRIVACY ID:
+function setVisitorId(visitorId: string): void
+
+// GET PRIVACY ID:
+function getVisitorId(): string
+```
+
 ## Send events
 
 ```javascript

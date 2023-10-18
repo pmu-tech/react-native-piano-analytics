@@ -1,7 +1,6 @@
 import { NativeModules, Platform } from 'react-native';
 
-import type { EventName } from './types';
-import type { PrivacyMode } from './types';
+import type { EventName, PrivacyMode } from './types';
 
 export * from './types';
 
@@ -54,6 +53,14 @@ export function privacySetMode(mode: PrivacyMode) {
 
 export function privacyGetMode(): Promise<PrivacyMode> {
   return PianoAnalytics.privacyGetMode();
+}
+
+export function setVisitorId(visitorId: string) {
+  PianoAnalytics.setVisitorId(visitorId);
+}
+
+export function getVisitorId(): Promise<string> {
+  return PianoAnalytics.getVisitorId();
 }
 
 export function setConfiguration(collectionName: string, siteId: number) {

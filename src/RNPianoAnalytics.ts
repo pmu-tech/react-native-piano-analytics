@@ -1,5 +1,6 @@
 import type { TurboModule } from 'react-native';
 import { TurboModuleRegistry } from 'react-native';
+
 import type { EventName, PrivacyMode } from './types';
 
 export interface Spec extends TurboModule {
@@ -19,6 +20,10 @@ export interface Spec extends TurboModule {
   privacySetMode(mode: PrivacyMode): Promise<void>;
 
   privacyGetMode(): Promise<PrivacyMode>;
+
+  setVisitorId(visitorId: string): Promise<void>;
+
+  getVisitorId(): Promise<string>;
 
   setConfiguration(collectionName: string, siteId: number): Promise<void>;
 }
