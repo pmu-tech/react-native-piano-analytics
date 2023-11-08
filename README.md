@@ -70,6 +70,16 @@ function setVisitorId(visitorId: string): void
 function getVisitorId(): string
 ```
 
+## Set Privacy Property
+
+```javascript
+// SET PRIVACY INCLUDE PROPERTY :
+function privacyIncludeProperty(property: string, privacyModes?: [string], eventNames?: [String]): void
+
+// SET PRIVACY INCLUDE PROPERTIES:
+function privacyIncludeProperties(properties: [string], privacyModes?: [string], eventNames?: [String]): void
+```
+
 ## Send events
 
 ```javascript
