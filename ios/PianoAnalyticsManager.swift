@@ -69,6 +69,15 @@ final class PianoAnalyticsManager: RCTViewManager {
     }
   }
 
+  @objc
+  final func privacyIncludeProperty(_ property: String, privacyModes: [String]? = ["*"], eventNames: [String]? = ["*"]) {
+    pa.privacyIncludeProperty(property, privacyModes: privacyModes, eventNames: eventNames)
+  }
+
+  @objc
+  final func privacyIncludeProperties(_ properties: [String], privacyModes: [String]? = ["*"] , eventNames: [String]? = ["*"]) {
+    pa.privacyIncludeProperties(properties, privacyModes: privacyModes, eventNames: eventNames)
+  }
 }
 
 

@@ -66,3 +66,27 @@ export function getVisitorId(): Promise<string> {
 export function setConfiguration(collectionName: string, siteId: number) {
   return PianoAnalytics.setConfiguration(collectionName, siteId);
 }
+
+export function privacyIncludeProperty(
+  storageKey: string,
+  privacyModes?: string[],
+  eventNames?: string[]
+) {
+  return PianoAnalytics.privacyIncludeProperty(
+    storageKey,
+    privacyModes,
+    eventNames
+  );
+}
+
+export function privacyIncludeProperties(
+  storageKeys: string[],
+  privacyModes?: string[],
+  eventNames?: string[]
+) {
+  return PianoAnalytics.privacyIncludeProperties(
+    storageKeys,
+    privacyModes,
+    eventNames
+  );
+}

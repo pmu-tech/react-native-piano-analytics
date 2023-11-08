@@ -96,6 +96,30 @@ export default function App() {
         >
           <Text>Get Visitor Id: {visitorId}</Text>
         </Pressable>
+
+        <Pressable
+          style={({ pressed }) => [
+            styles.button,
+            pressed && styles.buttonPressed,
+          ]}
+          onPress={async () => {
+            PianoAnalytics.privacyIncludeProperty('random', ['*']);
+          }}
+        >
+          <Text>Set privacy include property: 'random'</Text>
+        </Pressable>
+
+        <Pressable
+          style={({ pressed }) => [
+            styles.button,
+            pressed && styles.buttonPressed,
+          ]}
+          onPress={async () => {
+            PianoAnalytics.privacyIncludeProperties(['random', 'other']);
+          }}
+        >
+          <Text>Set privacy include properties: 'random'</Text>
+        </Pressable>
       </View>
     </View>
   );
