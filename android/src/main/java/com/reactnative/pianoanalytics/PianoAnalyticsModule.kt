@@ -59,9 +59,9 @@ class RNPianoAnalyticsModule internal constructor(context: ReactApplicationConte
 
    // VISITOR ID
    @ReactMethod
-    override fun setVisitorId(visitorId: String) {
-      piano.setVisitorId(visitorId)
-    }
+   override fun setVisitorId(visitorId: String) {
+     piano.setVisitorId(visitorId)
+   }
 
    @ReactMethod
    override fun getVisitorId(promise: Promise) {
@@ -73,6 +73,21 @@ class RNPianoAnalyticsModule internal constructor(context: ReactApplicationConte
         }
        }
    }
+
+  // PRIVACY INCLUDE PROPERTY
+  @ReactMethod
+  override fun privacyIncludeProperty(property: String, privacyModes: Array<String>?, eventNames: Array<String>?) {
+    piano.privacyIncludeProperty(property, privacyModes, eventNames)
+  }
+
+// // PRIVACY INCLUDE PROPERTIES
+  @ReactMethod
+  override fun privacyIncludeProperties(properties: Array<String>, privacyModes: Array<String>?, eventNames: Array<String>?){
+  // piano.privacyIncludeProperties(new String[]{"article_category", "article_date"}); // Will be included in all modes
+  // piano.privacyIncludeProperties(new String[]{"article_category", "article_date"}, new String[]{"exempt", "customMode"}); // Will be included in selected modes
+  // piano.privacyIncludeProperties(new String[]{"article_category", "article_date"}, null, new String[]{"page.display", "click.*"}); // Will be included for all modes, but only selected events
+    piano.privacyIncludeProperties(properties, privacyModes, eventNames)
+  }
 
   companion object {
     const val NAME = "RNPianoAnalytics"

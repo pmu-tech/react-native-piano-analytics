@@ -68,24 +68,24 @@ export function setConfiguration(collectionName: string, siteId: number) {
 }
 
 export function privacyIncludeProperty(
-  storageKey: string,
+  property: string,
   privacyModes?: string[],
   eventNames?: string[]
 ) {
   return PianoAnalytics.privacyIncludeProperty(
-    storageKey,
+    property,
     privacyModes,
     eventNames
   );
 }
 
 export function privacyIncludeProperties(
-  storageKeys: string[],
+  properties: string[],
   privacyModes?: string[],
   eventNames?: string[]
 ) {
   return PianoAnalytics.privacyIncludeProperties(
-    storageKeys,
+    properties,
     privacyModes,
     eventNames
   );
