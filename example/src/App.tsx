@@ -102,7 +102,7 @@ export default function App() {
             styles.button,
             pressed && styles.buttonPressed,
           ]}
-          onPress={async () => {
+          onPress={() => {
             PianoAnalytics.privacyIncludeProperty('random');
           }}
         >
@@ -114,7 +114,7 @@ export default function App() {
             styles.button,
             pressed && styles.buttonPressed,
           ]}
-          onPress={async () => {
+          onPress={() => {
             PianoAnalytics.privacyIncludeProperties(['random', 'other']);
           }}
         >
