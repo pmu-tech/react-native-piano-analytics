@@ -28,10 +28,10 @@ RCT_EXTERN_METHOD(setVisitorId: (NSString)visitorId);
 RCT_EXTERN_METHOD(getVisitorId: (RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject);
 
 // PRIVACY INCLUDE PROPERTY
-RCT_EXTERN_METHOD(privacyIncludeProperty: (NSString)property privacyModes:(NSArray<NSString>)privacyModes eventNames:(NSArray<NSString>)eventNames);
+RCT_EXTERN_METHOD(privacyIncludeProperty: (NSString)property);
 
 // PRIVACY INCLUDE PROPERTIES
-RCT_EXTERN_METHOD(privacyIncludeProperties: (NSArray<NSString>)properties privacyModes:(NSArray<NSString>)privacyModes eventNames:(NSArray<NSString>)eventNames);
+RCT_EXTERN_METHOD(privacyIncludeProperties: (NSArray<NSString>)properties);
 
 // Don't compile this code when we build for the old architecture.
 #ifdef RCT_NEW_ARCH_ENABLED
