@@ -74,10 +74,10 @@ function getVisitorId(): string
 
 ```javascript
 // SET PRIVACY INCLUDE PROPERTY :
-function privacyIncludeProperty(property: string, privacyModes?: [string], eventNames?: [String]): void
+function privacyIncludeProperty(property: string): void
 
 // SET PRIVACY INCLUDE PROPERTIES:
-function privacyIncludeProperties(properties: [string], privacyModes?: [string], eventNames?: [String]): void
+function privacyIncludeProperties(properties: [string]): void
 ```
 
 ## Send events

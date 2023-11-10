@@ -76,14 +76,14 @@ class RNPianoAnalyticsModule internal constructor(context: ReactApplicationConte
 
   // PRIVACY INCLUDE PROPERTY
   @ReactMethod
-  override fun privacyIncludeProperty(property: String, privacyModes: Array<String>?, eventNames: Array<String>?) {
-    piano.privacyIncludeProperty(property, privacyModes, eventNames)
+  override fun privacyIncludeProperty(property: String) {
+      piano.privacyIncludeProperty(property)
   }
 
 // // PRIVACY INCLUDE PROPERTIES
   @ReactMethod
-  override fun privacyIncludeProperties(properties: Array<String>, privacyModes: Array<String>?, eventNames: Array<String>?){
-    piano.privacyIncludeProperties(properties, privacyModes, eventNames)
+  override fun privacyIncludeProperties(properties: Array<String>){
+    piano.privacyIncludeProperties(properties)
   }
 
   companion object {

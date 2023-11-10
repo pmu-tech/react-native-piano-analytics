@@ -103,7 +103,7 @@ export default function App() {
             pressed && styles.buttonPressed,
           ]}
           onPress={async () => {
-            PianoAnalytics.privacyIncludeProperty('random', ['*']);
+            PianoAnalytics.privacyIncludeProperty('random');
           }}
         >
           <Text>Set privacy include property: 'random'</Text>
