@@ -76,11 +76,17 @@ class RNPianoAnalyticsModule internal constructor(context: ReactApplicationConte
 
   // PRIVACY INCLUDE PROPERTY
   @ReactMethod
-  override fun privacyIncludeProperty(property: String) {
-      piano.privacyIncludeProperty(property)
+  override fun privacyIncludeProperty(property: String, privacyModes: ReadableArray, eventNames: ReadableArray) {
+    var privacyModesList : List<String>? =  Arguments.toList(privacyModes)?.map { it.toString() }
+    var privacyModesArray: Array<String> = privacyModesList?.toTypedArray() ?: emptyArray()
+
+    var eventNamesList: List<String>? = Arguments.toList(eventNames)?.map { it.toString() }
+    var eventNamesArray: Array<String> = eventNamesList?.toTypedArray() ?: emptyArray()
+
+    piano.privacyIncludeProperty(property, privacyModesArray, eventNamesArray)
   }
 
-// // PRIVACY INCLUDE PROPERTIES
+  // PRIVACY INCLUDE PROPERTIES
   @ReactMethod
   override fun privacyIncludeProperties(properties: ReadableArray, privacyModes: ReadableArray, eventNames: ReadableArray){
     var propertiesList: List<String>? = Arguments.toList(properties)?.map { it.toString() }
@@ -90,7 +96,7 @@ class RNPianoAnalyticsModule internal constructor(context: ReactApplicationConte
     var privacyModesArray: Array<String> = privacyModesList?.toTypedArray() ?: emptyArray()
 
     var eventNamesList: List<String>? = Arguments.toList(eventNames)?.map { it.toString() }
-    var eventNamesArray: Array<String>? = eventNamesList?.toTypedArray()
+    var eventNamesArray: Array<String> = eventNamesList?.toTypedArray() ?: emptyArray()
 
     piano.privacyIncludeProperties(propertiesArray, privacyModesArray, eventNamesArray)
   }

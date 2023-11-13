@@ -103,7 +103,7 @@ export default function App() {
             pressed && styles.buttonPressed,
           ]}
           onPress={() => {
-            PianoAnalytics.privacyIncludeProperty('random');
+            PianoAnalytics.privacyIncludeProperty('random', ['other'], []);
           }}
         >
           <Text>Set privacy include property: 'random'</Text>
@@ -115,7 +115,6 @@ export default function App() {
             pressed && styles.buttonPressed,
           ]}
           onPress={() => {
-            // add null 
             PianoAnalytics.privacyIncludeProperties(['random'], [], []);
           }}
         >
