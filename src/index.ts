@@ -71,6 +71,14 @@ export function privacyIncludeProperty(property: string) {
   return PianoAnalytics.privacyIncludeProperty(property);
 }
 
-export function privacyIncludeProperties(properties: string[]) {
-  return PianoAnalytics.privacyIncludeProperties(properties);
+export function privacyIncludeProperties(
+  properties: string[],
+  privacyModes: string[],
+  eventNames: string[]
+) {
+  return PianoAnalytics.privacyIncludeProperties(
+    properties,
+    privacyModes,
+    eventNames
+  );
 }
