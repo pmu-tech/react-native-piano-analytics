@@ -76,7 +76,7 @@ class RNPianoAnalyticsModule internal constructor(context: ReactApplicationConte
 
   // PRIVACY INCLUDE PROPERTY
   @ReactMethod
-  override fun privacyIncludeProperty(property: String, privacyModes: ReadableArray, eventNames: ReadableArray) {
+  override fun privacyIncludeProperty(property: String, privacyModes: ReadableArray?, eventNames: ReadableArray?) {
     var privacyModesList : List<String>? =  Arguments.toList(privacyModes)?.map { it.toString() }
     var privacyModesArray: Array<String> = privacyModesList?.toTypedArray() ?: emptyArray()
 
@@ -88,7 +88,7 @@ class RNPianoAnalyticsModule internal constructor(context: ReactApplicationConte
 
   // PRIVACY INCLUDE PROPERTIES
   @ReactMethod
-  override fun privacyIncludeProperties(properties: ReadableArray, privacyModes: ReadableArray, eventNames: ReadableArray){
+  override fun privacyIncludeProperties(properties: ReadableArray, privacyModes: ReadableArray?, eventNames: ReadableArray?){
     var propertiesList: List<String>? = Arguments.toList(properties)?.map { it.toString() }
     var propertiesArray: Array<String> = propertiesList?.toTypedArray() ?: emptyArray()
 

@@ -23,7 +23,7 @@ abstract class RNPianoAnalyticsSpec internal constructor(context: ReactApplicati
 
   abstract fun setConfiguration(collectDomain: String, siteId: Int)
 
-  abstract fun privacyIncludeProperty(property: String, privacyModesArray: ReadableArray, eventNames: ReadableArray)
+  abstract fun privacyIncludeProperty(property: String, privacyModesArray: ReadableArray?, eventNames: ReadableArray?)
 
-  abstract fun privacyIncludeProperties(properties: ReadableArray, privacyModesArray: ReadableArray, eventNames: ReadableArray)
+  abstract fun privacyIncludeProperties(properties: ReadableArray, privacyModesArray: ReadableArray?, eventNames: ReadableArray?)
 }
