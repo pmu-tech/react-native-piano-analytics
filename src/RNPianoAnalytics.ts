@@ -26,6 +26,18 @@ export interface Spec extends TurboModule {
   getVisitorId(): Promise<string>;
 
   setConfiguration(collectionName: string, siteId: number): Promise<void>;
+
+  privacyIncludeProperty(
+    property: string,
+    privacyModes?: string[],
+    eventNames?: string[]
+  ): void;
+
+  privacyIncludeProperties(
+    properties: string[],
+    privacyModes?: string[],
+    eventNames?: string[]
+  ): void;
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>('RNPianoAnalytics');

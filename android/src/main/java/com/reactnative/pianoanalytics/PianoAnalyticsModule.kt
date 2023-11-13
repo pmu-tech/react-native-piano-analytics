@@ -2,10 +2,10 @@ package com.reactnative.pianoanalytics
 
 import com.facebook.react.bridge.*
 import com.facebook.react.module.annotations.ReactModule
-import com.reactnative.pianoanalytics.RNPianoAnalyticsSpec
-import io.piano.analytics.Event;
-import io.piano.analytics.Configuration;
-import io.piano.analytics.PianoAnalytics;
+import io.piano.analytics.Configuration
+import io.piano.analytics.Event
+import io.piano.analytics.PianoAnalytics
+import com.facebook.react.bridge.Arguments
 
 @ReactModule(name = RNPianoAnalyticsModule.NAME)
 class RNPianoAnalyticsModule internal constructor(context: ReactApplicationContext) :
@@ -59,9 +59,9 @@ class RNPianoAnalyticsModule internal constructor(context: ReactApplicationConte
 
    // VISITOR ID
    @ReactMethod
-    override fun setVisitorId(visitorId: String) {
-      piano.setVisitorId(visitorId)
-    }
+   override fun setVisitorId(visitorId: String) {
+     piano.setVisitorId(visitorId)
+   }
 
    @ReactMethod
    override fun getVisitorId(promise: Promise) {
@@ -73,6 +73,33 @@ class RNPianoAnalyticsModule internal constructor(context: ReactApplicationConte
         }
        }
    }
+
+  // PRIVACY INCLUDE PROPERTY
+  @ReactMethod
+  override fun privacyIncludeProperty(property: String, privacyModes: ReadableArray?, eventNames: ReadableArray?) {
+    var privacyModesList : List<String>? =  Arguments.toList(privacyModes)?.map { it.toString() }
+    var privacyModesArray: Array<String> = privacyModesList?.toTypedArray() ?: emptyArray()
+
+    var eventNamesList: List<String>? = Arguments.toList(eventNames)?.map { it.toString() }
+    var eventNamesArray: Array<String> = eventNamesList?.toTypedArray() ?: emptyArray()
+
+    piano.privacyIncludeProperty(property, privacyModesArray, eventNamesArray)
+  }
+
+  // PRIVACY INCLUDE PROPERTIES
+  @ReactMethod
+  override fun privacyIncludeProperties(properties: ReadableArray, privacyModes: ReadableArray?, eventNames: ReadableArray?){
+    var propertiesList: List<String>? = Arguments.toList(properties)?.map { it.toString() }
+    var propertiesArray: Array<String> = propertiesList?.toTypedArray() ?: emptyArray()
+
+    var privacyModesList : List<String>? =  Arguments.toList(privacyModes)?.map { it.toString() }
+    var privacyModesArray: Array<String> = privacyModesList?.toTypedArray() ?: emptyArray()
+
+    var eventNamesList: List<String>? = Arguments.toList(eventNames)?.map { it.toString() }
+    var eventNamesArray: Array<String> = eventNamesList?.toTypedArray() ?: emptyArray()
+
+    piano.privacyIncludeProperties(propertiesArray, privacyModesArray, eventNamesArray)
+  }
 
   companion object {
     const val NAME = "RNPianoAnalytics"

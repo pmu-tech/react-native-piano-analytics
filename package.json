@@ -1,6 +1,6 @@
 {
   "name": "@pmu-tech/react-native-piano-analytics",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Piano Analytics",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -88,7 +88,6 @@
   "engines": {
     "node": ">= 16.0.0"
   },
-  "packageManager": "^yarn@1.22.15",
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [

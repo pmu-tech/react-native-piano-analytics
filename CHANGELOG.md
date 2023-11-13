@@ -1,3 +1,7 @@
+## 0.4.0 (2023/11/10)
+ 
+- add privacyIncludeProperty and privacyIncludeProperties
+
 ## 0.3.0 (2023/10/18)
 
 - add setVisitorId and getVisitorId
