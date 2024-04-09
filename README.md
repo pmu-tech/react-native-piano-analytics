@@ -85,7 +85,7 @@ function privacyIncludeProperties(properties: [string], privacyModes?: string[],
 ```javascript
 export type ClickEvents = "click.action" | "click.navigation" | "click.download" | "click.exit";
 
-export type PageEvents = "page.display";
+export type PageEvents = "page.display" | "com.display";
 
 export type EventName = ClickEvents | PageEvents;
 function sendEvent(eventName: EventName, params: Record<string, string>): void
