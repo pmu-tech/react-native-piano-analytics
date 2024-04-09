@@ -9,5 +9,5 @@ export type ClickEvents =
   | 'click.navigation'
   | 'click.download'
   | 'click.exit';
-export type PageEvents = 'page.display';
+export type PageEvents = 'page.display' | 'com.display';
 export type EventName = ClickEvents | PageEvents;
