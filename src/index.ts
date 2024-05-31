@@ -30,7 +30,7 @@ const PianoAnalytics = PianoAnalyticsModule
 
 export function sendEvent(
   eventName: EventName,
-  params: Record<string, string>
+  params: Record<string, string | number | boolean>
 ) {
   return PianoAnalytics.sendEvent(eventName, params);
 }
@@ -43,9 +43,6 @@ export function setUser(
   return PianoAnalytics.setUser(userId, category, enableStorage);
 }
 
-export function deleteUser() {
-  return PianoAnalytics.deleteUser();
-}
 
 export function privacySetMode(mode: PrivacyMode) {
   PianoAnalytics.privacySetMode(mode);

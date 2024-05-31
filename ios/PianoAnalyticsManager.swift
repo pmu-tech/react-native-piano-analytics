@@ -25,7 +25,7 @@ final class PianoAnalyticsManager: RCTViewManager {
   }
 
   @objc
-  final func sendEvent(_ eventName: String, body: [String: String]) {
+  final func sendEvent(_ eventName: String, body: [String: Any]) {
     pa.sendEvent(Event(eventName, data: body))
   }
 
@@ -53,7 +53,7 @@ final class PianoAnalyticsManager: RCTViewManager {
       resolve(privacyMode)
     }
   }
-
+  
   @objc
   final func setVisitorId(_ visitorId: String) {
     pa.setVisitorId(visitorId)

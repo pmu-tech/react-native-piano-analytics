@@ -1,3 +1,11 @@
+## 0.6.0 (2024/06)
+
+- update android SDK to 3.4.0.
+
+### Breaking change  
+
+- Method deleteUser() is not supported anymore.
+
 ## 0.5.0 (2024/04/09)
 
 - update page event type (add 'com.display')

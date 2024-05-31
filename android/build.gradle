@@ -112,7 +112,7 @@ dependencies {
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
   // Piano
-  implementation group: 'io.piano', name: 'analytics', version: '3.2.1'
+  implementation group: 'io.piano.android', name: 'analytics', version: '3.4.0'
 }
 
 if (isNewArchitectureEnabled()) {

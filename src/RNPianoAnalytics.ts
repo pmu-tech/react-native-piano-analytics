@@ -6,7 +6,7 @@ import type { EventName, PrivacyMode } from './types';
 export interface Spec extends TurboModule {
   sendEvent(
     eventName: EventName,
-    params: Record<string, string>
+    params: Record<string, string | number | boolean | string[]>
   ): Promise<void>;
 
   setUser(
