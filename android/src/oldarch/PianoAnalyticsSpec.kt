@@ -3,6 +3,8 @@ package com.reactnative.pianoanalytics
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.*
+import io.piano.android.analytics.PrivacyModesStorage
+import io.piano.android.analytics.model.PrivacyMode
 
 abstract class RNPianoAnalyticsSpec internal constructor(context: ReactApplicationContext) :
   ReactContextBaseJavaModule(context) {
@@ -11,13 +13,11 @@ abstract class RNPianoAnalyticsSpec internal constructor(context: ReactApplicati
 
   abstract fun setUser(id: String, category: String?, enableStorage: Boolean)
 
-  abstract fun deleteUser()
-
   abstract fun privacySetMode(mode: String)
 
   abstract fun privacyGetMode(promise: Promise)
-
-  abstract fun setVisitorId(id: String)
+  
+  abstract fun setVisitorId(visitorId: String)
 
   abstract fun getVisitorId(promise: Promise)
 

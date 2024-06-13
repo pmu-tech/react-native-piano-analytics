@@ -55,9 +55,6 @@ function privacyGetMode(): PrivacyMode
 ```javascript
 // SET USER:
 function setUser(userId: string, category: string, enableStorage: boolean): void
-
-// REMOVE USER:
-function deleteUser(): void
 ```
 
 ## Set Privacy id
