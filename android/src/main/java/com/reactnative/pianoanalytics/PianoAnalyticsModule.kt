@@ -26,7 +26,7 @@ class RNPianoAnalyticsModule internal constructor(var context: ReactApplicationC
     val config = Configuration.Builder(
       collectDomain = collectDomain,
       site = siteId,
-      visitorIDType = VisitorIDType.CUSTOM
+      visitorIDType = VisitorIDType.UUID
     ).build()
     PianoAnalytics.init(context, config)
   }
