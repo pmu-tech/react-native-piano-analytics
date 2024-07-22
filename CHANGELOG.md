@@ -1,3 +1,7 @@
+## 0.7.0 (2024/07/22)
+
+- change piano visitorIDType from custom to UUID
+
 ## 0.6.0 (2024/06)
 
 - update android SDK to 3.4.0.
