@@ -26,7 +26,7 @@ class RNPianoAnalyticsModule internal constructor(var context: ReactApplicationC
     val config = Configuration.Builder(
       collectDomain = collectDomain,
       site = siteId,
-      visitorIDType = VisitorIDType.UUID
+      visitorIDType = VisitorIDType.UUID,
     ).build()
     PianoAnalytics.init(context, config)
   }
@@ -77,7 +77,7 @@ class RNPianoAnalyticsModule internal constructor(var context: ReactApplicationC
   // VISITOR ID
   @ReactMethod
   override fun getVisitorId(promise: Promise) {
-    val visitorId = PianoAnalytics.getInstance().customVisitorId
+    val visitorId = PianoAnalytics.getInstance().visitorId
     if (visitorId != null) {
       promise.resolve(visitorId)
     } else {
@@ -85,6 +85,7 @@ class RNPianoAnalyticsModule internal constructor(var context: ReactApplicationC
     }
   }
 
+  // not used anymore with visitorIDType = VisitorIDType.UUID,
   @ReactMethod
   override fun setVisitorId(visitorId: String) {
     PianoAnalytics.getInstance().customVisitorId = visitorId
@@ -92,23 +93,20 @@ class RNPianoAnalyticsModule internal constructor(var context: ReactApplicationC
 
   // PRIVACY INCLUDE PROPERTY
   private fun includePropertiesInPrivacyModes(propertiesList: List<String>, privacyModesList: List<String>, eventNamesList: List<String>) {
-    for (privacyMode in privacyModesList) {
-      val mode = getPrivacyMode(privacyMode) ?: continue
-
+      // Currently, adding properties for a custom mode is not supported. We're using EXEMPT as a placeholder. 
+      // Feel free to extend the functionality to allow custom modes.
       for (eventName in eventNamesList) {
-        val eventKey = if (eventName == "any") Event.ANY else eventName
         for (property in propertiesList) {
-          mode.allowedPropertyKeys[eventKey]?.add(PropertyName(property))
+          PrivacyMode.EXEMPT.allowedPropertyKeys[eventName]?.add(PropertyName(property))
         }
       }
-    }
   }
 
   @ReactMethod
   override fun privacyIncludeProperties(properties: ReadableArray, privacyModes: ReadableArray?, eventNames: ReadableArray?) {
     val propertiesList = Arguments.toList(properties)?.map { it.toString() } ?: emptyList()
-    val privacyModesList = Arguments.toList(privacyModes)?.map { it.toString() } ?: emptyList()
-    val eventNamesList = Arguments.toList(eventNames)?.map { it.toString() } ?: emptyList()
+    val privacyModesList = Arguments.toList(privacyModes)?.map { it.toString() } ?: listOf()
+    val eventNamesList = Arguments.toList(eventNames)?.map { it.toString() } ?: listOf(Event.ANY)
     includePropertiesInPrivacyModes(propertiesList, privacyModesList, eventNamesList)
   }
 
@@ -116,7 +114,7 @@ class RNPianoAnalyticsModule internal constructor(var context: ReactApplicationC
   override fun privacyIncludeProperty(property: String, privacyModes: ReadableArray?, eventNames: ReadableArray?) {
     val propertiesList = listOf(property)
     val privacyModesList: List<String> = Arguments.toList(privacyModes)?.map { it.toString() } ?: emptyList()
-    val eventNamesList: List<String> = Arguments.toList(eventNames)?.map { it.toString() } ?: emptyList()
+    val eventNamesList: List<String> = Arguments.toList(eventNames)?.map { it.toString() } ?: listOf(Event.ANY)
     includePropertiesInPrivacyModes(propertiesList, privacyModesList, eventNamesList)
   }
 

@@ -1,3 +1,7 @@
+## 0.7.1 / 0.7.2 (2024/09/20)
+
+- fix includePropertiesInPrivacyModes for android,
+
 ## 0.7.0 (2024/07/22)
 
 - change piano visitorIDType from custom to UUID
