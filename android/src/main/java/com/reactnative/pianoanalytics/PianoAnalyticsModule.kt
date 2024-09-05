@@ -26,7 +26,7 @@ class RNPianoAnalyticsModule internal constructor(var context: ReactApplicationC
     val config = Configuration.Builder(
       collectDomain = collectDomain,
       site = siteId,
-      visitorIDType = VisitorIDType.UUID
+      visitorIDType = VisitorIDType.UUID,
     ).build()
     PianoAnalytics.init(context, config)
   }
@@ -77,7 +77,7 @@ class RNPianoAnalyticsModule internal constructor(var context: ReactApplicationC
   // VISITOR ID
   @ReactMethod
   override fun getVisitorId(promise: Promise) {
-    val visitorId = PianoAnalytics.getInstance().customVisitorId
+    val visitorId = PianoAnalytics.getInstance().visitorId
     if (visitorId != null) {
       promise.resolve(visitorId)
     } else {
@@ -85,6 +85,7 @@ class RNPianoAnalyticsModule internal constructor(var context: ReactApplicationC
     }
   }
 
+  // not used anymore with visitorIDType = VisitorIDType.UUID,
   @ReactMethod
   override fun setVisitorId(visitorId: String) {
     PianoAnalytics.getInstance().customVisitorId = visitorId
