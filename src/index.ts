@@ -43,7 +43,6 @@ export function setUser(
   return PianoAnalytics.setUser(userId, category, enableStorage);
 }
 
-
 export function privacySetMode(mode: PrivacyMode) {
   PianoAnalytics.privacySetMode(mode);
 }
