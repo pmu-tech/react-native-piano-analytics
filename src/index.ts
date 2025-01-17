@@ -14,7 +14,7 @@ const LINKING_ERROR =
 const isTurboModuleEnabled = global.__turboModuleProxy != null;
 
 const PianoAnalyticsModule = isTurboModuleEnabled
-  ? require('./RNPianoAnalytics').default
+  ? require('./NativePianoAnalytics').default
   : NativeModules.RNPianoAnalytics;
 
 const PianoAnalytics = PianoAnalyticsModule

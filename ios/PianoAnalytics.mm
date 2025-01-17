@@ -38,7 +38,7 @@ RCT_EXTERN_METHOD(privacyIncludeProperties: (NSArray<NSString>)properties privac
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
     (const facebook::react::ObjCTurboModule::InitParams &)params
 {
-    return std::make_shared<facebook::react::NativeRNPianoAnalyticsSpecJSI>(params);
+    return std::make_shared<facebook::react::NativePianoAnalyticsSpecJSI>(params);
 }
 #endif
 
