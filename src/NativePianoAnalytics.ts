@@ -1,11 +1,10 @@
 import type { TurboModule } from 'react-native';
 import { TurboModuleRegistry } from 'react-native';
 
-
 export interface Spec extends TurboModule {
   sendEvent(
     eventName: string,
-    params: {[key: string] :  string | number | boolean | string[]}
+    params: { [key: string]: string | number | boolean | string[] }
   ): Promise<void>;
 
   setUser(
