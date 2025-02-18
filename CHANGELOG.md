@@ -14,7 +14,7 @@
 
 - update android SDK to 3.4.0.
 
-### Breaking change  
+### Breaking change
 
 - Method deleteUser() is not supported anymore.
 
