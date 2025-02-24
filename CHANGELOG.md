@@ -1,3 +1,7 @@
+## 0.7.3 (2025/02/18)
+
+- fix code generation when new architecture is enabled,
+
 ## 0.7.1 / 0.7.2 (2024/09/20)
 
 - fix includePropertiesInPrivacyModes for android,

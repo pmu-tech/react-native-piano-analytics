@@ -13,55 +13,42 @@ import io.piano.android.analytics.model.User
 import io.piano.android.analytics.model.VisitorIDType
 
 @ReactModule(name = RNPianoAnalyticsModule.NAME)
-class RNPianoAnalyticsModule internal constructor(var context: ReactApplicationContext) :
-  RNPianoAnalyticsSpec(context) {
+class RNPianoAnalyticsModule(reactContext: ReactApplicationContext) :
+  RNPianoAnalyticsSpec(reactContext) {
 
   override fun getName(): String {
     return NAME
   }
 
-  // CONFIG
-  @ReactMethod
-  override fun setConfiguration(collectDomain: String, siteId: Int) {
-    val config = Configuration.Builder(
-      collectDomain = collectDomain,
-      site = siteId,
-      visitorIDType = VisitorIDType.UUID,
-    ).build()
-    PianoAnalytics.init(context, config)
-  }
-
-  // EVENTS METHODS
   @ReactMethod
   override fun sendEvent(eventName: String, params: ReadableMap) {
     val properties = mutableListOf<Property>()
     val iterator = params.keySetIterator()
-    while (iterator.hasNextKey()) {
-      val key = iterator.nextKey()
-      when (params.getType(key)) {
-        ReadableType.String -> properties.add(Property(PropertyName(key), params.getString(key).toString()))
-        ReadableType.Boolean -> properties.add(Property(PropertyName(key), params.getBoolean(key)))
-        ReadableType.Number -> properties.add(Property(PropertyName(key), params.getDouble(key)))
-        ReadableType.Array -> {
-          val array = params.getArray(key)
-          val stringArray = array?.toArrayList()?.map { it.toString() }?.toTypedArray()
-          properties.add(Property(PropertyName(key), stringArray ?: emptyArray()))
+      while (iterator.hasNextKey()) {
+        val key = iterator.nextKey()
+        when (params.getType(key)) {
+          ReadableType.String -> properties.add(Property(PropertyName(key), params.getString(key).toString()))
+          ReadableType.Boolean -> properties.add(Property(PropertyName(key), params.getBoolean(key)))
+          ReadableType.Number -> properties.add(Property(PropertyName(key), params.getDouble(key)))
+          ReadableType.Array -> {
+            val array = params.getArray(key)
+            val stringArray = array?.toArrayList()?.map { it.toString() }?.toTypedArray()
+            properties.add(Property(PropertyName(key), stringArray ?: emptyArray()))
+          }
+
+          else -> {}
         }
-        else -> {}
       }
-    }
-    val event = Event.Builder(eventName).properties(properties).build()
-    PianoAnalytics.getInstance().sendEvents(event)
+      val event = Event.Builder(eventName).properties(properties).build()
+      PianoAnalytics.getInstance().sendEvents(event)
   }
 
-  // USER METHODS
   @ReactMethod
   override fun setUser(id: String, category: String?, enableStorage: Boolean) {
     val userStorage = PianoAnalytics.getInstance().userStorage
     userStorage.currentUser = User(id, category, enableStorage)
   }
 
-  // PRIVACY MODE
   @ReactMethod
   override fun privacySetMode(mode: String) {
     val privacyMode = getPrivacyMode(mode) ?: return
@@ -74,7 +61,11 @@ class RNPianoAnalyticsModule internal constructor(var context: ReactApplicationC
     promise.resolve(currentMode)
   }
 
-  // VISITOR ID
+  @ReactMethod
+  override fun setVisitorId(visitorId: String) {
+    PianoAnalytics.getInstance().customVisitorId = visitorId
+  }
+
   @ReactMethod
   override fun getVisitorId(promise: Promise) {
     val visitorId = PianoAnalytics.getInstance().visitorId
@@ -85,15 +76,19 @@ class RNPianoAnalyticsModule internal constructor(var context: ReactApplicationC
     }
   }
 
-  // not used anymore with visitorIDType = VisitorIDType.UUID,
   @ReactMethod
-  override fun setVisitorId(visitorId: String) {
-    PianoAnalytics.getInstance().customVisitorId = visitorId
+  override fun setConfiguration(collectDomain: String, siteId: Int) {
+    val config = Configuration.Builder(
+      collectDomain = collectDomain,
+      site = siteId.toInt(),
+      visitorIDType = VisitorIDType.UUID,
+    ).build()
+    PianoAnalytics.init(reactApplicationContext, config)
   }
 
   // PRIVACY INCLUDE PROPERTY
   private fun includePropertiesInPrivacyModes(propertiesList: List<String>, privacyModesList: List<String>, eventNamesList: List<String>) {
-      // Currently, adding properties for a custom mode is not supported. We're using EXEMPT as a placeholder. 
+      // Currently, adding properties for a custom mode is not supported. We're using EXEMPT as a placeholder.
       // Feel free to extend the functionality to allow custom modes.
       for (eventName in eventNamesList) {
         for (property in propertiesList) {
