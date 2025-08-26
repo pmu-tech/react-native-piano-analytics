@@ -1,3 +1,7 @@
+## 0.7.3 (2025/08/25)
+
+- Update EventName type to string
+
 ## 0.7.1 / 0.7.2 (2024/09/20)
 
 - fix includePropertiesInPrivacyModes for android,
