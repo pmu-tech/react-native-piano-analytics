@@ -1,12 +1,10 @@
 import type { TurboModule } from 'react-native';
 import { TurboModuleRegistry } from 'react-native';
 
-import type { EventName, PrivacyMode } from './types';
-
 export interface Spec extends TurboModule {
   sendEvent(
-    eventName: EventName,
-    params: Record<string, string | number | boolean | string[]>
+    eventName: string,
+    params: { [key: string]: string | number | boolean | string[] }
   ): Promise<void>;
 
   setUser(
@@ -17,9 +15,9 @@ export interface Spec extends TurboModule {
 
   deleteUser(): Promise<void>;
 
-  privacySetMode(mode: PrivacyMode): Promise<void>;
+  privacySetMode(mode: string): Promise<void>;
 
-  privacyGetMode(): Promise<PrivacyMode>;
+  privacyGetMode(): Promise<string>;
 
   setVisitorId(visitorId: string): Promise<void>;
 

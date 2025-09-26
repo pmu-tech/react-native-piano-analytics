@@ -1,3 +1,7 @@
+## 0.7.4 (2025/02/18)
+
+- fix code generation when new architecture is enabled,
+
 ## 0.7.3 (2025/08/25)
 
 - Update EventName type to string
@@ -14,7 +18,7 @@
 
 - update android SDK to 3.4.0.
 
-### Breaking change  
+### Breaking change
 
 - Method deleteUser() is not supported anymore.
 
