@@ -43,8 +43,12 @@ export function setUser(
   return PianoAnalytics.setUser(userId, category, enableStorage);
 }
 
+export function deleteUser() {
+  return PianoAnalytics.deleteUser();
+}
+
 export function privacySetMode(mode: PrivacyMode) {
-  PianoAnalytics.privacySetMode(mode);
+  return PianoAnalytics.privacySetMode(mode);
 }
 
 export function privacyGetMode(): Promise<PrivacyMode> {
