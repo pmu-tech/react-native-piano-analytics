@@ -1,3 +1,7 @@
+## 0.7.5 (2025/10/28)
+
+- fix android compilation errors when new architecture is enabled,
+
 ## 0.7.4 (2025/02/18)
 
 - fix code generation when new architecture is enabled,

@@ -13,10 +13,12 @@ abstract class RNPianoAnalyticsSpec internal constructor(context: ReactApplicati
 
   abstract fun setUser(id: String, category: String?, enableStorage: Boolean)
 
+  abstract fun deleteUser()
+
   abstract fun privacySetMode(mode: String)
 
   abstract fun privacyGetMode(promise: Promise)
-  
+
   abstract fun setVisitorId(visitorId: String)
 
   abstract fun getVisitorId(promise: Promise)

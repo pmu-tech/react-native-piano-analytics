@@ -49,19 +49,18 @@ def supportsNamespace() {
 android {
   if (supportsNamespace()) {
     namespace "com.reactnative.pianoanalytics"
-  } else {
+
+    buildFeatures {
+      buildConfig = true
+    }
     sourceSets {
       main {
-        manifest.srcFile "src/main/AndroidManifestDeprecated.xml"
+        manifest.srcFile "src/main/AndroidManifestNew.xml"
       }
     }
   }
 
   compileSdkVersion getExtOrIntegerDefault("compileSdkVersion")
-
-  buildFeatures {
-    buildConfig = true
-  }
 
   defaultConfig {
     minSdkVersion getExtOrIntegerDefault("minSdkVersion")

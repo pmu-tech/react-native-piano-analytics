@@ -1,6 +1,6 @@
 {
   "name": "@pmu-tech/react-native-piano-analytics",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "description": "Piano Analytics",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",

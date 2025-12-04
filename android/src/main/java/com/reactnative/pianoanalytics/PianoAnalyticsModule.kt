@@ -4,7 +4,6 @@ import com.facebook.react.bridge.*
 import com.facebook.react.module.annotations.ReactModule
 import io.piano.android.analytics.Configuration
 import io.piano.android.analytics.PianoAnalytics
-import io.piano.android.analytics.PrivacyModesStorage
 import io.piano.android.analytics.model.Event
 import io.piano.android.analytics.model.PrivacyMode
 import io.piano.android.analytics.model.Property
@@ -16,14 +15,11 @@ import io.piano.android.analytics.model.VisitorIDType
 class RNPianoAnalyticsModule(reactContext: ReactApplicationContext) :
   RNPianoAnalyticsSpec(reactContext) {
 
-  override fun getName(): String {
-    return NAME
-  }
-
   @ReactMethod
-  override fun sendEvent(eventName: String, params: ReadableMap) {
+  override fun sendEvent(eventName: String?, params: ReadableMap?, promise: Promise?) {
     val properties = mutableListOf<Property>()
-    val iterator = params.keySetIterator()
+    params?.let {
+      val iterator = params.keySetIterator()
       while (iterator.hasNextKey()) {
         val key = iterator.nextKey()
         when (params.getType(key)) {
@@ -39,20 +35,44 @@ class RNPianoAnalyticsModule(reactContext: ReactApplicationContext) :
           else -> {}
         }
       }
-      val event = Event.Builder(eventName).properties(properties).build()
-      PianoAnalytics.getInstance().sendEvents(event)
+      val event = eventName?.let { evtName -> Event.Builder(evtName).properties(properties).build() }
+      event?.let { e -> PianoAnalytics.getInstance().sendEvents(e) }
+
+      promise?.resolve("event sent successfully")
+    } ?: {
+      promise?.reject(RNPianoAnalyticsModule.NAME,"params are not defined")
+    }
   }
 
   @ReactMethod
-  override fun setUser(id: String, category: String?, enableStorage: Boolean) {
+  override fun setUser(
+    userId: String?,
+    category: String?,
+    enableStorage: Boolean,
+    promise: Promise?
+  ) {
     val userStorage = PianoAnalytics.getInstance().userStorage
-    userStorage.currentUser = User(id, category, enableStorage)
+    userId?.let {
+      userStorage.currentUser = User(userId, category, enableStorage)
+      promise?.resolve("userId set successfully")
+    } ?: {
+      promise?.reject(RNPianoAnalyticsModule.NAME,"userId not defined")
+    }
+  }
+
+  override fun deleteUser(promise: Promise?) {
+    PianoAnalytics.getInstance().userStorage.currentUser = null
   }
 
   @ReactMethod
-  override fun privacySetMode(mode: String) {
-    val privacyMode = getPrivacyMode(mode) ?: return
-    PianoAnalytics.getInstance().privacyModesStorage.currentMode = privacyMode
+  override fun privacySetMode(mode: String?, promise: Promise?) {
+    mode?.let {
+      val privacyMode = getPrivacyMode(mode) ?: return
+      PianoAnalytics.getInstance().privacyModesStorage.currentMode = privacyMode
+      promise?.resolve("privacy mode set successfully")
+    } ?: {
+      promise?.reject(RNPianoAnalyticsModule.NAME,"mode is not defined")
+    }
   }
 
   @ReactMethod
@@ -62,7 +82,7 @@ class RNPianoAnalyticsModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  override fun setVisitorId(visitorId: String) {
+  override fun setVisitorId(visitorId: String?, promise: Promise?) {
     PianoAnalytics.getInstance().customVisitorId = visitorId
   }
 
@@ -77,13 +97,18 @@ class RNPianoAnalyticsModule(reactContext: ReactApplicationContext) :
   }
 
   @ReactMethod
-  override fun setConfiguration(collectDomain: String, siteId: Int) {
-    val config = Configuration.Builder(
-      collectDomain = collectDomain,
-      site = siteId.toInt(),
-      visitorIDType = VisitorIDType.UUID,
-    ).build()
-    PianoAnalytics.init(reactApplicationContext, config)
+  override fun setConfiguration(collectionName: String?, siteId: Double, promise: Promise?) {
+    collectionName?.let {
+      val config = Configuration.Builder(
+        collectDomain = collectionName,
+        site = siteId.toInt(),
+        visitorIDType = VisitorIDType.UUID,
+      ).build()
+      PianoAnalytics.init(reactApplicationContext, config)
+      promise?.resolve("config initialized successfully")
+    } ?: {
+      promise?.reject(RNPianoAnalyticsModule.NAME,"collectionName is not defined")
+    }
   }
 
   // PRIVACY INCLUDE PROPERTY
